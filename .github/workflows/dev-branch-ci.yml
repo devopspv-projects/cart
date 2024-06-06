@@ -3,7 +3,7 @@ name: 'Dev-Branch-CI'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "ROBO-*" ]
 
 permissions:
   contents: read
