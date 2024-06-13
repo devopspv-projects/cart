@@ -10,7 +10,7 @@ jobs:
   MainBranchCI:
     name: 'MainBranchCI'
     runs-on:
-      group: Default
+      labels: self-hosted
 #    runs-on: ubuntu-latest
     defaults:
       run:
@@ -28,5 +28,6 @@ jobs:
         run: sonar-scanner -Dsonar.host.url=http://54.161.118.88:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=${repo_name} -Dsonar.qualitygate.wait=true  -Dsonar.exclusions=node_modules/**
         env:
           SONAR_TOKEN: ${{  secrets.SONAR_TOKEN }}
+
       - name: Install NodeJS Dependencies
         run: npm install
