@@ -9,7 +9,9 @@ permissions:
 jobs:
   MainBranchCI:
     name: 'MainBranchCI'
-    runs-on: ubuntu-latest
+    runs-on:
+      group: Default
+#    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
