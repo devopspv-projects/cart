@@ -35,4 +35,4 @@ jobs:
         run: |
           'curl -sSf -u "admin:$Artifactory_PASSWORD" -X PUT -T cart-$GITHUB_REF_NAME.zip http://artifactory.devopspv24.online:8081/artifactory/cart/cart-$GITHUB_REF_NAME.zip'
         env:
-          $Artifactory_PASSWORD: ${{  secrets.$Artifactory_PASSWORD }}
+          $Artifactory_PASSWORD: ${{ secrets.$Artifactory_PASSWORD }}
