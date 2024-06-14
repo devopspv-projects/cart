@@ -1,14 +1,16 @@
 
-name: 'PR'
+name: 'ReleaseTag'
 
-on: pull_request
-
+on:
+  push:
+    tags:
+      - '*'
 permissions:
   contents: read
 
 jobs:
   PR:
-    name: 'PR'
+    name: 'ReleaseTag'
     runs-on:
       labels: self-hosted
 #    runs-on: ubuntu-latest
@@ -24,8 +26,10 @@ jobs:
       - name: Install NodeJS Dependencies
         run: npm install
 
-      - name: Run Code Quality
-        run: sonar-scanner -Dsonar.host.url=http://54.161.118.88:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=${repo_name} -Dsonar.qualitygate.wait=true  -Dsonar.exclusions=node_modules/**
+      - name: Create Archive
+        run: |
+          echo $TAG_NAME > VERSION
+          zip -r $repo_name-$TAG_NAME.zip *'
         env:
           SONAR_TOKEN: ${{  secrets.SONAR_TOKEN }}
 
