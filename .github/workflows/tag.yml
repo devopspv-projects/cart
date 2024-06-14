@@ -24,16 +24,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install NodeJS Dependencies
-        run: env
+        run: npm install
 
-#      - name: Create Archive
-#        run: |
-#          echo $TAG_NAME > VERSION
-#          zip -r $repo_name-$TAG_NAME.zip *'
-#        env:
-#          SONAR_TOKEN: ${{  secrets.SONAR_TOKEN }}
-#
-#      - name: Install NodeJS Dependencies
-#        run: npm install
+      - name: Create Archive
+        run: |
+          echo $GITHUB_REF_NAME > VERSION
+          zip -r cart-$GITHUB_REF_NAME.zip *
 
-##
+      - name: Release App
+        run: |
+          'curl -sSf -u "admin:$Artifactory_PASSWORD" -X PUT -T cart-$GITHUB_REF_NAME.zip http://artifactory.devopspv24.online:8081/artifactory/cart/cart-$GITHUB_REF_NAME.zip'
+        env:
+          $Artifactory_PASSWORD: ${{  secrets.$Artifactory_PASSWORD }}
