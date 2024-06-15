@@ -30,8 +30,6 @@ jobs:
         run: |
           echo $TAG_NAME > VERSION
           zip -r $repo_name-$TAG_NAME.zip *'
-        env:
-          SONAR_TOKEN: ${{  secrets.SONAR_TOKEN }}
 
       - name: Install NodeJS Dependencies
         run: npm install
