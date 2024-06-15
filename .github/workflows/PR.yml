@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run Code Quality
-        run: sonar-scanner -Dsonar.host.url=http://54.161.118.88:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=${repo_name} -Dsonar.qualitygate.wait=true  -Dsonar.exclusions=node_modules/**
+        run: sonar-scanner -Dsonar.host.url=http://54.161.118.88:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=cart -Dsonar.qualitygate.wait=true  -Dsonar.exclusions=node_modules/**
         env:
           SONAR_TOKEN: ${{  secrets.SONAR_TOKEN }}
 
